@@ -27,7 +27,7 @@ keywords = ["batch", "elt", "parquet", "airflow"]
 
 classifiers = [
     "Private :: Do Not Upload",
-    "Development Status :: 1 - Planning",
+    "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Programming Language :: Python :: 3.14"
