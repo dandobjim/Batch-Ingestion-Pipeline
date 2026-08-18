@@ -37,6 +37,7 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
     "pyarrow>=25.0.1",
     "pydantic>=2.13.4",
+    "pydantic-settings>=2.15.0",
     "requests>=2.34.2",
     "structlog>=26.1.0",
 ]
@@ -54,6 +55,31 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/api", "src/elt"]
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--import-mode=importlib"]
+markers = [
+    "unit: fast, isolated tests with no I/O",
+    "integration: end-to-end flow, fully mocked HTTP, real filesystem writes",
+]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+omit = ["src/api/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "\\.\\.\\.",
+    "raise NotImplementedError",
+]
 
 [tool.ruff]
 exclude = [
@@ -89,7 +115,7 @@ indent-width = 4
 target-version = "py314"
 
 [tool.ruff.lint]
-select = ['E']
+select = ["E", "F", "I", "UP", "B", "SIM"]
 ignore = []
 fixable = ["ALL"]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
