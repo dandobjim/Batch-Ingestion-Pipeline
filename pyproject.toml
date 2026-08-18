@@ -1,11 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "batch-data-ingestion-pipeline"
 version = "0.1.0"
+
+authors = [
+    { name = "Daniel Doblas Jiménez", email = "dandobjim@gmail.com" }
+]
+
+maintainers = [
+    { name = "Daniel Doblas Jiménez", email = "dandobjim@gmail.com" }
+]
+
+description = "A batch pipeline that extracts data from a public API and/or CSV sources, validates it against a schema, and lands it in a partitioned raw storage layer — fully orchestrated with Airflow."
+
+readme = "README.md"
+
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
 requires-python = ">=3.14"
+
+keywords = ["batch", "elt", "parquet", "airflow"]
+
+classifiers = [
+    "Private :: Do Not Upload",
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3.14"
+]
+
 dependencies = [
     "fastapi[standard]>=0.141.1",
     "requests>=2.34.2",
 ]
+
+[project.urls]
+Repository = "https://github.com/dandobjim/Batch-Ingestion-Pipeline"
+Issues = "https://github.com/dandobjim/Batch-Ingestion-Pipeline/issues"
 
 [dependency-groups]
 dev = [
@@ -13,6 +48,9 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.16.3",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/api", "src/elt"]
 
 [tool.ruff]
 exclude = [
