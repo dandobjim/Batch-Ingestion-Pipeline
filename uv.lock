@@ -39,6 +39,7 @@ source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "pyarrow" },
+    { name = "pydantic" },
     { name = "requests" },
     { name = "structlog" },
 ]
@@ -54,6 +55,7 @@ dev = [
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" },
     { name = "pyarrow", specifier = ">=25.0.1" },
+    { name = "pydantic", specifier = ">=2.13.4" },
     { name = "requests", specifier = ">=2.34.2" },
     { name = "structlog", specifier = ">=26.1.0" },
 ]

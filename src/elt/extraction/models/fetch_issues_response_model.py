@@ -89,6 +89,17 @@ class IssueDependenciesSummary(BaseModel):
     total_blocking: int
 
 
+class IssueType(BaseModel):
+    id: int
+    node_id: str
+    name: str
+    description: str | None = None
+    color: str | None = None
+    created_at: datetime
+    updated_at: datetime
+    is_enabled: bool
+
+
 class Issue(BaseModel):
     url: str
     repository_url: str
@@ -113,7 +124,7 @@ class Issue(BaseModel):
     assignee: GithubUser | None = None
     author_association: str
     issue_field_values: list
-    type: str | None = None
+    type: IssueType | None = None
     active_lock_reason: str | None = None
     draft: bool | None = None
     pull_request: PullRequestRef | None = None
