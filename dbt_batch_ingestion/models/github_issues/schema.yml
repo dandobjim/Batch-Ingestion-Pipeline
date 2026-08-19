@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw GitHub API data loaded by the ELT pipeline, before dbt transformations."
+    tables:
+      - name: github_issues
+        description: "One row per GitHub issue per ingestion run, as loaded from the raw parquet extract."
+        columns:
+          - name: id
+            description: "GitHub issue id."
+            tests:
+              - not_null
+          - name: ingestion_date
+            description: "Partition date the issue was extracted on."
+            tests:
+              - not_null
+
+models:
+  - name: stg_github_issues
+    description: "Staging table for github raw issues data"
+    columns:
+      - name: issue_id
+        tests:
+          - unique
+          - not_null
+      - name: state
+        tests:
+          - accepted_values:
+              values: [ 'open', 'closed' ]
