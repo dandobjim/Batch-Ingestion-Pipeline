@@ -5,3 +5,5 @@ __pycache__
 data/
 .coverage
 logs
+.claude
+/dbt_batch_ingestion/.user.yml

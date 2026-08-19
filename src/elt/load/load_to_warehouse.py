@@ -1,6 +1,7 @@
 import duckdb
 
 from elt.config.env_vars_config import get_env_vars
+from elt.config.logging_configuration import log
 
 
 def load_partition_to_warehouse(ingestion_date: str, parquet_glob: str, pg_conn_str: str):
@@ -10,6 +11,8 @@ def load_partition_to_warehouse(ingestion_date: str, parquet_glob: str, pg_conn_
 
     con.execute("BEGIN;")
     try:
+        log.info("Parsing and loading data into warehouse")
+
         con.execute(f"""
                     DELETE FROM pg.raw.github_issues
                     WHERE ingestion_date = '{ingestion_date}';
@@ -65,7 +68,7 @@ def load_partition_to_warehouse(ingestion_date: str, parquet_glob: str, pg_conn_
             SELECT count(*) FROM pg.raw.github_issues
             WHERE ingestion_date = '{ingestion_date}'
         """).fetchone()
-    print(f"Rows loaded for {ingestion_date}: {result[0]}")
+    log.info(f"Rows loaded for {ingestion_date}: {result[0]}")
 
 
 if __name__ == "__main__":

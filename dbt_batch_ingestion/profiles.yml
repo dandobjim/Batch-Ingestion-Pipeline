@@ -1,0 +1,12 @@
+dbt_batch_ingestion:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_POSTGRES_HOST', 'postgres-dbt') }}"
+      port: "{{ env_var('DBT_POSTGRES_PORT', '5432') | as_number }}"
+      user: "{{ env_var('DBT_POSTGRES_USER', 'test') }}"
+      pass: "{{ env_var('DBT_POSTGRES_PASSWORD', 'test') }}"
+      dbname: "{{ env_var('DBT_POSTGRES_DB', 'github_db') }}"
+      schema: "{{ env_var('DBT_POSTGRES_SCHEMA', 'stg') }}"
+      threads: 4

@@ -1,0 +1,11 @@
+.venv
+.git
+.idea
+.claude
+data
+logs
+.coverage
+__pycache__
+dbt_batch_ingestion/target
+dbt_batch_ingestion/dbt_packages
+dbt_batch_ingestion/logs

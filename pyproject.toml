@@ -34,6 +34,7 @@ classifiers = [
 ]
 
 dependencies = [
+    "apache-airflow>=3.2.2",
     "dbt-postgres>=1.11.0",
     "duckdb>=1.5.5",
     "fastapi[standard]>=0.141.1",
