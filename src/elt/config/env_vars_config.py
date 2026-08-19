@@ -9,6 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 class EnvVarsConfig(BaseSettings):
     api_key: str = Field(alias="GITHUB_API_KEY")
+    database_url: str
     model_config = SettingsConfigDict(env_file=PROJECT_ROOT / ".env", extra="ignore")
 
 

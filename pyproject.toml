@@ -34,12 +34,16 @@ classifiers = [
 ]
 
 dependencies = [
+    "dbt-postgres>=1.11.0",
+    "duckdb>=1.5.5",
     "fastapi[standard]>=0.141.1",
     "pyarrow>=25.0.1",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.15.0",
     "requests>=2.34.2",
+    "setuptools>=84.0.0",
     "structlog>=26.1.0",
+    "wheel>=0.48.0",
 ]
 
 [project.urls]
